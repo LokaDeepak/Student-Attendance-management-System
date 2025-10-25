@@ -1,74 +1,150 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-    <title>Register Institution</title>
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/css/bootstrap.min.css" rel="stylesheet">
-    <link rel="stylesheet" href="reg_inst.css"!important>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Register Institution</title>
+
+  <!-- Bootstrap -->
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/css/bootstrap.min.css" rel="stylesheet">
+
+  <!-- Your CSS (fixed link) -->
+  <link rel="stylesheet" href="reg_inst.css">
 </head>
 <body>
-    <div class="deco-element deco1"></div>
-    <div class="deco-element deco2"></div>
-    <div class="deco-element deco3"></div>
-    <div class="deco-element deco4"></div>
+  <div class="deco-element deco1"></div>
+  <div class="deco-element deco2"></div>
+  <div class="deco-element deco3"></div>
+  <div class="deco-element deco4"></div>
 
-    <div class="logo">
-        <img src="" alt="">
-        <h2>Stud Portal</h2>
-    </div>
+  <div class="logo">
+    <img src="" alt="">
+    <h2>Stud Portal</h2>
+  </div>
 
-    <div class="main-container">
-        <div class="login-card">
-            <div class="welcome-text">
-                <h1>Register Institution</h1>
-                <p>Fill in the details to create your institution account</p>
-            </div>
+  <div class="main-container">
+    <div class="login-card">
+      <div class="welcome-text">
+        <h1>Register Institution</h1>
+        <p>Fill in the details to create your institution account</p>
+      </div>
 
-            <form class="registration-form" novalidate>
-                <div class="form-group">
-                    <label for="institutionName" class="form-label">Institution Name</label>
-                    <input type="text" id="institutionName" name="institutionName" class="form-control" placeholder="Enter institution name" required>
-                </div>
-
-                <div class="form-group">
-                    <label for="adminName" class="form-label">Master Admin Name</label>
-                    <input type="text" id="adminName" name="adminName" class="form-control" placeholder="Enter master admin name" required>
-                </div>
-
-                <div class="form-group">
-                    <label for="email" class="form-label">Official Email</label>
-                    <input type="email" id="email" name="email" class="form-control" placeholder="example@institution.com" required>
-                </div>
-
-                <div class="form-group">
-                    <label for="contactNumber" class="form-label">Contact Number</label>
-                    <input type="tel" id="contactNumber" name="contactNumber" class="form-control" placeholder="Enter phone number" required>
-                </div>
-
-                <div class="form-group form-group-wide">
-                    <label for="address" class="form-label">Institution Address</label>
-                    <textarea id="address" name="address" class="form-control" rows="2" placeholder="Enter address" required></textarea>
-                </div>
-
-                <div class="form-group">
-                    <label for="password" class="form-label">Create Password</label>
-                    <input type="password" id="password" name="password" class="form-control" placeholder="Enter password" required>
-                </div>
-
-                <div class="form-group">
-                    <label for="confirmPassword" class="form-label">Confirm Password</label>
-                    <input type="password" id="confirmPassword" name="confirmPassword" class="form-control" placeholder="Re-enter password" required>
-                </div>
-
-                <div class="form-actions">
-                    <button type="submit" class="btn btn-primary btn-primary-custom">Register Institution</button>
-                    <a href="index.html" class="btn btn-secondary-custom ms-3">← Back to Home</a>
-                </div>
-            </form>
+      <form id="registrationForm" class="registration-form" novalidate>
+        <div class="form-group">
+          <label for="institutionName" class="form-label">Institution Name</label>
+          <input type="text" id="institutionName" name="institutionName" class="form-control" placeholder="Enter institution name" required>
         </div>
-    </div>
 
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/js/bootstrap.bundle.min.js"></script>
+        <div class="form-group">
+          <label for="adminName" class="form-label">Master Admin Name</label>
+          <input type="text" id="adminName" name="adminName" class="form-control" placeholder="Enter master admin name" required>
+        </div>
+
+        <div class="form-group">
+          <label for="email" class="form-label">Official Email</label>
+          <input type="email" id="email" name="email" class="form-control" placeholder="example@institution.com" required>
+        </div>
+
+        <div class="form-group">
+          <label for="contactNumber" class="form-label">Contact Number</label>
+          <input type="tel" id="contactNumber" name="contactNumber" class="form-control" placeholder="Enter phone number" required>
+        </div>
+
+        <div class="form-group form-group-wide">
+          <label for="address" class="form-label">Institution Address</label>
+          <textarea id="address" name="address" class="form-control" rows="2" placeholder="Enter address" required></textarea>
+        </div>
+
+        <div class="form-group">
+          <label for="password" class="form-label">Create Password</label>
+          <input type="password" id="password" name="password" class="form-control" placeholder="Enter password" required>
+        </div>
+
+        <div class="form-group">
+          <label for="confirmPassword" class="form-label">Confirm Password</label>
+          <input type="password" id="confirmPassword" name="confirmPassword" class="form-control" placeholder="Re-enter password" required>
+        </div>
+
+        <div class="form-actions">
+          <button id="submitBtn" type="submit" class="btn btn-primary btn-primary-custom">Register Institution</button>
+          <a href="index.html" class="btn btn-secondary-custom ms-3">← Back to Home</a>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <!-- Custom centered modal for showing the code -->
+  <div id="codeModal" class="code-modal" aria-hidden="true" role="dialog" aria-labelledby="codeModalTitle" aria-modal="true">
+    <div class="code-modal-backdrop" data-close="true"></div>
+    <div class="code-modal-content" role="document">
+      <button class="code-modal-close" type="button" aria-label="Close">&times;</button>
+      <div class="code-modal-body">
+        <h3 id="codeModalTitle">Your institution code is</h3>
+        <div id="institutionCode" class="code-number">12345</div>
+        <p class="small mt-2">Share this code with administrators to allow them to link their accounts.</p>
+        <div class="d-flex justify-content-center mt-3">
+          <button id="copyCodeBtn" class="btn btn-outline-light me-2">Copy Code</button>
+          <button id="closeModalBtn" class="btn btn-light">Close</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Bootstrap bundle -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/js/bootstrap.bundle.min.js"></script>
+
+  <!-- JS to show modal -->
+  <script>
+    (function () {
+      const form = document.getElementById('registrationForm');
+      const modal = document.getElementById('codeModal');
+      const backdrop = modal.querySelector('.code-modal-backdrop');
+      const closeBtn = modal.querySelector('.code-modal-close');
+      const closeFooterBtn = document.getElementById('closeModalBtn');
+      const copyBtn = document.getElementById('copyCodeBtn');
+      const codeEl = document.getElementById('institutionCode');
+      const FIXED_CODE = "12345"; // the requested code
+
+      function openModal(code) {
+        codeEl.textContent = code;
+        modal.setAttribute('aria-hidden', 'false');
+        modal.classList.add('open');
+        // trap focus quickly for accessibility
+        closeBtn.focus();
+      }
+
+      function closeModal() {
+        modal.setAttribute('aria-hidden', 'true');
+        modal.classList.remove('open');
+      }
+
+      form.addEventListener('submit', function (e) {
+        e.preventDefault(); // prevent actual submit for demo
+        // Optionally you can validate inputs here. For now we will show the modal.
+        openModal(FIXED_CODE);
+      });
+
+      // click handlers
+      closeBtn.addEventListener('click', closeModal);
+      closeFooterBtn.addEventListener('click', closeModal);
+      backdrop.addEventListener('click', closeModal);
+
+      // allow ESC to close
+      document.addEventListener('keydown', function (e) {
+        if (e.key === 'Escape' && modal.classList.contains('open')) closeModal();
+      });
+
+      // copy code action
+      copyBtn.addEventListener('click', function () {
+        navigator.clipboard?.writeText(codeEl.textContent).then(function () {
+          copyBtn.textContent = 'Copied!';
+          setTimeout(() => copyBtn.textContent = 'Copy Code', 1500);
+        }).catch(() => {
+          copyBtn.textContent = 'Copy failed';
+          setTimeout(() => copyBtn.textContent = 'Copy Code', 1500);
+        });
+      });
+    })();
+  </script>
 </body>
 </html>
