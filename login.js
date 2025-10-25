@@ -1,17 +1,14 @@
-// Read role from URL (default 'user')
 const urlParams = new URLSearchParams(window.location.search);
 const role = urlParams.get('role') || 'user';
 
-// Update role badge
 const roleBadge = document.getElementById('roleBadge');
 const roleNames = {
-  'master-admin': '👑 Master Admin',
-  'admin': '👨‍💼 Admin',
-  'student': '👨‍🎓 Student'
+  'master-admin': 'Master Admin',
+  'admin': 'Admin',
+  'student': 'Student'
 };
 roleBadge.textContent = roleNames[role] || 'User';
 
-// Helper: map role -> dashboard file
 function dashboardForRole(r) {
   switch (r) {
     case 'master-admin': return 'master_dashboard.html';

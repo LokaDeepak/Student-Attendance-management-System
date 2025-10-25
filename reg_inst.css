@@ -389,7 +389,6 @@ body {
   box-shadow: 0 8px 30px rgba(0,0,0,0.45);
 }
 
-/* small responsive tweaks */
 @media (max-width: 420px) {
   .code-modal-body {
     padding: 18px;
