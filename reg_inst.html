@@ -90,10 +90,8 @@
     </div>
   </div>
 
-  <!-- Bootstrap bundle -->
   <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/js/bootstrap.bundle.min.js"></script>
 
-  <!-- JS to show modal -->
   <script>
     (function () {
       const form = document.getElementById('registrationForm');
@@ -103,13 +101,12 @@
       const closeFooterBtn = document.getElementById('closeModalBtn');
       const copyBtn = document.getElementById('copyCodeBtn');
       const codeEl = document.getElementById('institutionCode');
-      const FIXED_CODE = "12345"; // the requested code
+      const FIXED_CODE = "12345"; // example code bcz testing mading
 
       function openModal(code) {
         codeEl.textContent = code;
         modal.setAttribute('aria-hidden', 'false');
         modal.classList.add('open');
-        // trap focus quickly for accessibility
         closeBtn.focus();
       }
 
@@ -119,22 +116,18 @@
       }
 
       form.addEventListener('submit', function (e) {
-        e.preventDefault(); // prevent actual submit for demo
-        // Optionally you can validate inputs here. For now we will show the modal.
+        e.preventDefault(); 
         openModal(FIXED_CODE);
       });
 
-      // click handlers
       closeBtn.addEventListener('click', closeModal);
       closeFooterBtn.addEventListener('click', closeModal);
       backdrop.addEventListener('click', closeModal);
 
-      // allow ESC to close
       document.addEventListener('keydown', function (e) {
         if (e.key === 'Escape' && modal.classList.contains('open')) closeModal();
       });
 
-      // copy code action
       copyBtn.addEventListener('click', function () {
         navigator.clipboard?.writeText(codeEl.textContent).then(function () {
           copyBtn.textContent = 'Copied!';
