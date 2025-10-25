@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Institution Portal</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <!-- <div class="bg-shape shape1"></div>
+    <div class="bg-shape shape2"></div>
+    <div class="bg-shape shape3"></div> -->
+
+    <div class="deco-element deco1"></div>
+    <div class="deco-element deco2"></div>
+    <div class="deco-element deco3"></div>
+    <div class="deco-element deco4"></div>
+
+    <div class="logo">
+        <img src="" alt="">
+        <h2>Giga Nigga</h2>
+    </div>
+
+    <div class="main-container">
+        <div class="login-card">
+            <div class="welcome-text">
+                <h1>Welcome</h1>
+                <p>Manage your institution efficiently</p>
+            </div>
+
+            <div class="button-group">
+                <button class="btn-primary-custom" onclick="location.href='reg_inst.html'">
+                    Register New Institution
+                </button>
+
+                <div class="divider">
+                    <span>Or</span>
+                </div>
+
+                <button class="btn-secondary-custom" onclick="showRoleModal()">
+                    Login As
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <div class="role-modal" id="roleModal">
+        <div class="modal-content-custom">
+            <button class="modal-close" onclick="closeRoleModal()">&times;</button>
+            <h2 class="modal-title">Select Your Role</h2>
+            
+            <div class="role-option" onclick="loginAs('admin')">
+                <h3>👨‍💼 Admin</h3>
+                <p>Manage institution and users</p>
+            </div>
+
+            <div class="role-option" onclick="loginAs('student')">
+                <h3>👨‍🎓 Student</h3>
+                <p>Access courses and materials</p>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/js/bootstrap.bundle.min.js"></script>
+    <script src="script.js"></script>
+</body>
+</html>
