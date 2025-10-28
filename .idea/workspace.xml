@@ -4,9 +4,12 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="232c81a0-9e29-4ae3-b4df-8bf7abdacaea" name="Changes" comment="new commit">
+    <list default="true" id="232c81a0-9e29-4ae3-b4df-8bf7abdacaea" name="Changes" comment="db changes">
+      <change afterPath="$PROJECT_DIR$/app/crud/auth_crud.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/schemas/auth.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/main.py" beforeDir="false" afterPath="$PROJECT_DIR$/app/main.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/crud/master_admin_crud.py" beforeDir="false" afterPath="$PROJECT_DIR$/app/crud/master_admin_crud.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/crud/models.py" beforeDir="false" afterPath="$PROJECT_DIR$/app/crud/models.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -94,7 +97,23 @@
       <option name="project" value="LOCAL" />
       <updated>1761293895051</updated>
     </task>
-    <option name="localTasksCounter" value="3" />
+    <task id="LOCAL-00003" summary="new commit">
+      <option name="closed" value="true" />
+      <created>1761318204645</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1761318204645</updated>
+    </task>
+    <task id="LOCAL-00004" summary="db changes">
+      <option name="closed" value="true" />
+      <created>1761330147703</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1761330147703</updated>
+    </task>
+    <option name="localTasksCounter" value="5" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -110,6 +129,7 @@
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="new commit" />
-    <option name="LAST_COMMIT_MESSAGE" value="new commit" />
+    <MESSAGE value="db changes" />
+    <option name="LAST_COMMIT_MESSAGE" value="db changes" />
   </component>
 </project>

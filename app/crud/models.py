@@ -19,7 +19,6 @@ class Admin(Base):
     inst_id = Column(Integer, ForeignKey("institution.inst_id"))
     admin_name = Column(String(100), nullable=False)
     admin_username = Column(String(100), unique=True, nullable=False)
-    admin_password = Column(String(100), nullable=False)
     admin_phone = Column(String(100), nullable=False)
     admin_email = Column(String(100), nullable=False)
     admin_password = Column(String(100), nullable=False)
@@ -64,3 +63,16 @@ class timAdminSubject(Base):
     admin_id = Column(Integer, ForeignKey("admins.admin_id"))
     sub_id = Column(Integer, ForeignKey("subjects.sub_id"))
     admin_subject = Column(String(100), nullable=False)
+
+# Hypothetical model in models.py
+class DateTime:
+    pass
+
+class Announcement(Base):
+    __tablename__ = "announcement"
+    id = Column(Integer, primary_key=True)
+    inst_id = Column(Integer, ForeignKey("institution.inst_id"), nullable=False)
+    admin_id = Column(Integer, ForeignKey("admin.admin_id"), nullable=False) # Who made the announcement
+    title = Column(String(200), nullable=False)
+    content = Column(String(1000), nullable=False)
+    created_at = Column(DateTime, default=datetime.now)
