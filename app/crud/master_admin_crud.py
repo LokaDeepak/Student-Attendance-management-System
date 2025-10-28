@@ -3,8 +3,9 @@ import string
 
 import bcrypt
 from sqlalchemy.orm import Session
-
+from sqlalchemy import func
 from app.crud.auth_crud import hash_password
+from app.crud.report_crud import class_attendance_report, student_overall_report, subject_overall_report
 from app.schemas.auth import StudentCreateSchema
 from models import Institution, Admin, Student, Classes
 
@@ -191,3 +192,12 @@ def get_all_classes(db: Session, inst_id: int) -> list[Classes]:
 
 def get_all_students(db: Session, inst_id: int) -> list[Student]:
     return db.query(Student).filter(Student.inst_id == inst_id).all()
+
+def view_report_by_class(db: Session, c_id: int):
+    class_attendance_report(db, c_id)
+
+def view_report_by_student(db: Session, s_id: int):
+    student_overall_report(db, s_id)
+
+def view_report_by_subject(db: Session, sub_id: int):
+    subject_overall_report(db, sub_id)

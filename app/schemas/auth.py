@@ -1,6 +1,8 @@
+from datetime import datetime
 from typing import Optional
 
 from pydantic import BaseModel, EmailStr
+from sqlalchemy import Boolean
 
 
 class InstitutionRegistrationSchema(BaseModel):
@@ -31,6 +33,17 @@ class StudentCreateSchema(BaseModel):
     s_phone: str
     c_name: str
 
+class ClassCreateSchema(BaseModel):
+    class_name: str
+
+# class AttendanceCreateSchema(BaseModel):
+#     s_id: int
+#     c_id: int
+#     sub_id: int
+#     date: datetime
+#     status: Boolean
+#     taken_by_admin_id: int
+
 class TokenSchema(BaseModel):
     #if login successful
     access_token: str
@@ -50,4 +63,3 @@ class InstitutionResponse(BaseModel):
     # Required for Pydantic to read attributes from SQLAlchemy objects
     class Config:
         from_attributes = True
-

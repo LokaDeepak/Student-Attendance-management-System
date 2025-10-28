@@ -53,6 +53,7 @@ class Attendance(Base):
     __tablename__ = "attendance"
     a_id = Column(Integer, primary_key=True)
     s_id = Column(Integer, ForeignKey("Student.s_id"))
+    c_id = Column(Integer, ForeignKey("classes.c_id"))
     sub_id = Column(Integer, ForeignKey("Subjects.sub_id"))
     date = Column(datetime, nullable=False)
     status = Column(Boolean, nullable=False)
