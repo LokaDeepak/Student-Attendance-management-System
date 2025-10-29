@@ -25,6 +25,7 @@ class Subject(SubjectBase):
 
     class Config:
         orm_mode = True
+        #form_attributes = True
 
 
 # --- Attendance Schemas ---
@@ -46,3 +47,4 @@ class AttendanceRecord(AttendanceCreateSchema):
 
     class Config:
         orm_mode = True
+       # form_attributes = True

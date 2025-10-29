@@ -1,13 +1,17 @@
 import secrets
 import string
+from typing import Optional
 
 import bcrypt
 from sqlalchemy.orm import Session
 from sqlalchemy import func
+
+from app.crud import models
 from app.crud.auth_crud import hash_password
 from app.crud.report_crud import class_attendance_report, student_overall_report, subject_overall_report
+from app.schemas.attendance import Subject
 from app.schemas.auth import StudentCreateSchema
-from models import Institution, Admin, Student, Classes
+from models import Institution, Admin, Student, Classes, Subjects
 
 
 def generate_unique_inst_code(db: Session, length: int = 8) -> str:
@@ -107,6 +111,14 @@ def get_admins_by_inst_id(db: Session, inst_id: int) -> list[Admin]:
     admins = db.query(Admin).filter(Admin.inst_id == inst_id).all()
     return admins
 
+def get_admin_by_username(db: Session, admin_username: str) -> Optional[Admin]:
+    admin = db.query(Admin).filter(Admin.admin_username == admin_username).first()
+    #if admin:
+     #   return {"message": f"Admin {admin_username} already exists"}
+
+def get_admin_by_id(db: Session, admin_id: int) -> Optional[Admin]:
+    admin = db.query(Admin).filter(Admin.admin_id == admin_id).first()
+
 # to create new student
 def create_student(db: Session, inst_id: str, student_data: 'StudentCreateSchema') -> Student:
     student_exists = db.query(Student).filter(
@@ -183,6 +195,11 @@ def delete_class_by_id(db: Session, inst_id: int, c_id: int) -> bool:
 
     return False
 
+def get_subject_by_id(db: Session, sub_id: int) -> Optional[Subject]:
+    subject = db.query(Subjects).filter(Subjects.sub_id == sub_id).first()
+
+
+
 # reading data for view reports
 def get_total_students_count(db: Session, inst_id: int) -> int:
     return db.query(Student).filter(Student.inst_id == inst_id).count()
@@ -201,3 +218,10 @@ def view_report_by_student(db: Session, s_id: int):
 
 def view_report_by_subject(db: Session, sub_id: int):
     subject_overall_report(db, sub_id)
+
+def get_institution_by_code(db: Session, institution_code: str) -> Optional[models.Institution]:
+    """
+    Retrieves an institution by its unique code.
+    Used by the registration route to check for code duplication.
+    """
+    return db.query(models.Institution).filter(models.Institution.institution_code == institution_code).first()

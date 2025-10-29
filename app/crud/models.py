@@ -42,6 +42,7 @@ class Student(Base):
     __table_args__ = (
         UniqueConstraint('inst_id', 'reg_no', name='uq_inst_regno'),
     )
+    s_password = Column(String(100), nullable=False)
 
 class Subjects(Base):
     __tablename__ = "subjects"
