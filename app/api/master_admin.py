@@ -2,20 +2,22 @@ from fastapi import APIRouter, Depends, HTTPException, status
 from sqlalchemy.orm import Session
 from typing import List
 from ..crud.database import get_db
-# from ..utils.security import create_access_token, authenticate_user, get_current_master_admin
-# from ..utils.security import ACCESS_TOKEN_EXPIRE_MINUTES, create_jwt_token_for_user
-from app.utils.security import (
-    create_access_token,
-    authenticate_user,
-    get_current_master_admin,
-    ACCESS_TOKEN_EXPIRE_MINUTES,
-    create_jwt_token_for_user
-)
+#import utils
+from ..api.auth import create_access_token, authenticate_user, get_current_master_admin
+from ..api.auth import ACCESS_TOKEN_EXPIRE_MINUTES, create_jwt_token_for_user
+# from app.utils.security import (
+#     create_access_token,
+#     authenticate_user,
+#     get_current_master_admin,
+#     ACCESS_TOKEN_EXPIRE_MINUTES,
+#     create_jwt_token_for_user
+# )
 
 # Import Schemas (Input/Output validation)
 from ..schemas.auth import AdminLoginSchema, TokenSchema
 from ..schemas.institution import InstitutionRegistrationSchema, InstitutionResponse
-from ..schemas.auth import AdminCreateSchema, Admin  # Admin schema used for output
+from ..schemas.auth import AdminCreateSchema, Admin # Admin schema used for output
+from ..schemas.student import ClassCreateSchema, Class, StudentCreateSchema
 
 from ..crud import master_admin_crud
 
@@ -118,6 +120,16 @@ def remove_admin(
     master_admin_crud.delete_admin_by_id(db, admin_id)
     return {"message": "Admin deleted"}
 
+#student management -- add student
+@router.post("/students", status_code=status.HTTP_201_CREATED)
+async def add_student(
+    student: StudentCreateSchema,
+    db: Session = Depends(get_db),
+    current_user: dict = Depends(get_current_master_admin)
+):
+    """Adds a new student record."""
+    #app.crud.student_crud(db, student=student)
+    return {"message": f"Student added successfully: {student.stu_name}"}
 # @router.post("/assign-subject", status_code=status.HTTP_201_CREATED)
 # def assign_subject_to_admin(
 #     admin_id: int,

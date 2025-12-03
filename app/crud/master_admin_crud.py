@@ -10,7 +10,7 @@ from app.crud import models
 from app.crud.auth_crud import hash_password
 from app.crud.report_crud import class_attendance_report, student_overall_report, subject_overall_report
 from app.schemas.attendance import Subject
-from app.schemas.auth import StudentCreateSchema
+from app.schemas.student import StudentCreateSchema
 from models import Institution, Admin, Student, Classes, Subjects
 
 
@@ -225,3 +225,68 @@ def get_institution_by_code(db: Session, institution_code: str) -> Optional[mode
     Used by the registration route to check for code duplication.
     """
     return db.query(models.Institution).filter(models.Institution.institution_code == institution_code).first()
+
+
+# def get_attendance_report_by_class(db: Session, class_id: int, subject_id: int, start_date: date, end_date: date) -> \
+# List[dict]:
+#     """Generates a summary attendance report for a given class, subject, and date range."""
+#
+#     # 1. Get total sessions (count of distinct dates attendance was taken)
+#     total_sessions_query = db.query(func.count(func.distinct(models.AttendanceRecord.date))).filter(
+#         models.AttendanceRecord.class_id == class_id,
+#         models.AttendanceRecord.subject_id == subject_id,
+#         models.AttendanceRecord.date.between(start_date, end_date)
+#     ).scalar() or 0
+#
+#     if total_sessions_query == 0:
+#         return []
+#
+#     # 2. Get attendance data (group by student and count status)
+#     report_data = db.query(
+#         models.Student.id,
+#         models.Student.name,
+#         models.Student.roll_number,
+#         models.AttendanceRecord.status,
+#         func.count(models.AttendanceRecord.id).label("count")
+#     ).join(models.AttendanceRecord).filter(
+#         models.Student.class_id == class_id,
+#         models.AttendanceRecord.subject_id == subject_id,
+#         models.AttendanceRecord.date.between(start_date, end_date)
+#     ).group_by(models.Student.id, models.AttendanceRecord.status).all()
+#
+#     # 3. Process data into a structured report
+#     report_map = {}
+#     for student_id, name, roll_number, status, count in report_data:
+#         if student_id not in report_map:
+#             report_map[student_id] = {
+#                 "student_id": student_id,
+#                 "name": name,
+#                 "roll_number": roll_number,
+#                 "present_count": 0,
+#                 "absent_count": 0,
+#                 "total_sessions": total_sessions_query,
+#             }
+#
+#         # Status should be stored in uppercase (P/A) or similar for consistent checking
+#         if status.upper() == 'PRESENT':
+#             report_map[student_id]["present_count"] = count
+#         elif status.upper() == 'ABSENT':
+#             report_map[student_id]["absent_count"] = count
+#
+#             # Final calculation and formatting
+#     final_report = []
+#     for data in report_map.values():
+#         present_count = data['present_count']
+#         percentage = (present_count / total_sessions_query) * 100 if total_sessions_query > 0 else 0
+#
+#         final_report.append({
+#             "student_id": data['student_id'],
+#             "name": data['name'],
+#             "roll_number": data['roll_number'],
+#             "total_present": present_count,
+#             "total_absent": data['absent_count'],
+#             "total_sessions": total_sessions_query,
+#             "attendance_percentage": round(percentage, 2),
+#         })
+#
+#     return final_report

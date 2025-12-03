@@ -8,7 +8,8 @@ from app.crud import models
 from app.crud.models import Classes, Student, Attendance, Announcement
 from .master_admin_crud import create_class
 from .report_crud import *
-from app.schemas.auth import StudentCreateSchema, ClassCreateSchema, AttendanceCreateSchema
+from app.schemas.student import StudentCreateSchema, ClassCreateSchema
+from app.schemas.attendance import AttendanceCreateSchema
 # Assuming models are in a parent directory for SQLAlchemy ORM models
 
 #add class by admin
@@ -18,6 +19,49 @@ def add_class(db: Session, inst_id: int, class_name: str) -> Classes:
 #for select class combo box
 def get_all_classes(db: Session, inst_id: int) -> List[Classes]:
     return db.query(Classes).filter(Classes.inst_id == inst_id).all()
+
+def get_class_by_id(db: Session, class_id: int) -> Optional[models.Class]:
+    """Fetches a class by its ID."""
+    return db.query(models.Class).filter(models.Class.id == class_id).first()
+
+def create_student(db: Session, inst_id: str, student_data: 'StudentCreateSchema') -> Student:
+    student_exists = db.query(Student).filter(
+        Student.inst_id == student_data.inst_id,
+        Student.reg_no == student_data.reg_no
+    ).first()
+
+    if student_exists:
+        raise ValueError("Student already exists for this institution.")
+
+    db_student = Student(
+        inst_id=inst_id,
+        reg_no = student_data.reg_no,
+        s_name=student_data.s_name,
+        s_email=student_data.s_email,
+        s_phone=student_data.s_phone,
+        c_id = student_data.c_id
+    )
+    db.add(db_student)
+    db.commit()
+    db.refresh(db_student)
+    return db_student
+
+#to remove student by id
+def delete_student_by_id(db: Session, reg_no: str, inst_id: int) -> bool:
+    """Deletes an Admin belonging to the specified institution."""
+
+    student = db.query(Student).filter(
+        Student.inst_id == inst_id,
+        Student.reg_no == reg_no
+    ).first()
+
+    if student:
+        db.delete(student)
+        db.commit()
+        return True
+
+    return False
+
 
 def get_students_for_attendance(db: Session, c_id: int, inst_id: int) -> List[models.Student]:
     """
