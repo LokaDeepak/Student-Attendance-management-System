@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Manage Admins">
+    <title>Manage Admins - SAMS</title>
+    <link rel="stylesheet" href="/static/css/main.css">
+    <script src="https://unpkg.com/@phosphor-icons/web"></script>
+</head>
+<body class="bg-secondary">
+    
+    <!-- Sidebar Navigation -->
+    <aside class="sidebar">
+        <div class="sidebar-header">
+            <div class="sidebar-logo">S</div>
+            <div class="sidebar-brand">SAMS</div>
+        </div>
+
+        <nav class="sidebar-nav">
+            <a href="/masterdashboard" class="nav-item">
+                <span class="nav-icon"><i class="ph ph-squares-four"></i></span>
+                <span>Dashboard</span>
+            </a>
+            
+            <div class="nav-section">
+                <div class="nav-section-title">Management</div>
+                <a href="/addadmins" class="nav-item active">
+                    <span class="nav-icon"><i class="ph ph-user-gear"></i></span>
+                    <span>Admins</span>
+                </a>
+                <a href="/addclass" class="nav-item">
+                    <span class="nav-icon"><i class="ph ph-chalkboard-teacher"></i></span>
+                    <span>Classes</span>
+                </a>
+                <a href="/addstudent" class="nav-item">
+                    <span class="nav-icon"><i class="ph ph-student"></i></span>
+                    <span>Students</span>
+                </a>
+                <a href="/assignsubject" class="nav-item">
+                    <span class="nav-icon"><i class="ph ph-books"></i></span>
+                    <span>Subjects</span>
+                </a>
+            </div>
+
+            <div class="nav-section">
+                <div class="nav-section-title">Reports</div>
+                <a href="/viewreport" class="nav-item" title="Coming Soon">
+                    <span class="nav-icon"><i class="ph ph-chart-line-up"></i></span>
+                    <span>Reports</span>
+                </a>
+            </div>
+        </nav>
+
+        <div class="sidebar-footer">
+            <a href="/login" class="nav-item danger">
+                <span class="nav-icon"><i class="ph ph-sign-out"></i></span>
+                <span>Logout</span>
+            </a>
+        </div>
+    </aside>
+
+    <!-- Sidebar Overlay for Mobile -->
+    <div class="sidebar-overlay"></div>
+
+    <!-- Main Content -->
+    <main class="main-content">
+        <!-- Topbar -->
+        <header class="topbar">
+            <div class="topbar-left">
+                <button class="sidebar-toggle btn-icon">
+                    <span>☰</span>
+                </button>
+                <h1 class="topbar-title">Manage Admins</h1>
+            </div>
+
+            <div class="topbar-right">
+                <button class="btn btn-icon btn-ghost" data-theme-toggle>
+                    <i class="ph ph-moon text-xl icon-dark"></i>
+                    <i class="ph ph-sun text-xl icon-light" style="display: none;"></i>
+                </button>
+                <div class="avatar"><span class="text-xs">MA</span></div>
+            </div>
+        </header>
+
+        <!-- Content -->
+        <div class="animate animate-fade-in-up">
+            
+            <div class="grid lg:grid-cols-3 gap-6">
+                <!-- Add Admin Form -->
+                <div class="card col-span-1">
+                    <div class="card-header">
+                        <h3 class="card-title">Add New Admin</h3>
+                    </div>
+                    <div class="card-body">
+                        <form action="/addadmins" method="POST">
+                            <div class="form-group">
+                                <label class="form-label required">Admin Name</label>
+                                <input type="text" name="admin_name" class="form-input" placeholder="Full Name" required>
+                            </div>
+
+                            <div class="form-group mb-4">
+                                <label class="form-label required">Username</label>
+                                <input type="text" name="admin_username" class="form-input" placeholder="Username" required>
+                            </div>
+
+                            <div class="form-group mb-4">
+                                <label class="form-label required">Email</label>
+                                <input type="email" name="admin_email" class="form-input" placeholder="Email Address" required>
+                            </div>
+
+                            <div class="form-group mb-4">
+                                <label class="form-label required">Phone</label>
+                                <input type="tel" name="admin_phone" class="form-input" placeholder="Phone Number" required>
+                            </div>
+
+                            <div class="form-group mb-4">
+                                <label class="form-label required">Password</label>
+                                <input type="password" name="admin_password" class="form-input" placeholder="Password" required>
+                            </div>
+
+                            <button type="submit" class="btn btn-primary w-full">Add Admin</button>
+                        </form>
+                    </div>
+                </div>
+
+                <!-- Admin List -->
+                <div class="card lg:col-span-2">
+                    <div class="card-header flex justify-between items-center">
+                        <h3 class="card-title">Existing Admins</h3>
+                        <div class="search-bar w-48">
+                            <input type="text" class="form-input py-1 text-sm" placeholder="Search admins...">
+                        </div>
+                    </div>
+                    <div class="card-body p-0">
+                        <div class="overflow-x-auto">
+                            <table class="table">
+                                <thead>
+                                    <tr>
+                                        <th>Name</th>
+                                        <th>Contact</th>
+                                        <th>Username</th>
+                                        <th>Actions</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td>
+                                            <div class="flex items-center gap-2">
+                                                <div class="avatar avatar-sm">JS</div>
+                                                <span class="font-medium">John Smith</span>
+                                            </div>
+                                        </td>
+                                        <td class="text-sm">
+                                            john@example.com<br>
+                                            <span class="text-muted">+1 234 567 890</span>
+                                        </td>
+                                        <td>john_admin</td>
+                                        <td>
+                                            <form action="/removeadmins/1" method="POST" class="inline-block">
+                                                <input type="hidden" name="admin_id" value="1">
+                                                <button type="submit" class="btn btn-xs btn-ghost text-error" title="Remove">
+                                                    <i class="ph ph-trash"></i>
+                                                </button>
+                                            </form>
+                                            <button class="btn btn-xs btn-ghost" title="Edit">
+                                                <i class="ph ph-pencil-simple"></i>
+                                            </button>
+                                        </td>
+                                    </tr>
+                                    <!-- Add more rows dynamically or via backend loop -->
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </main>
+
+    <!-- Scripts -->
+    <script src="/static/js/theme.js"></script>
+    <script src="/static/js/components.js"></script>
+    <script src="/static/js/dashboard.js"></script>
+</body>
+</html>

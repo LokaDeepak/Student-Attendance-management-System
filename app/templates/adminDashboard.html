@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Admin Dashboard">
+    <title>Admin Dashboard - SAMS</title>
+    <link rel="stylesheet" href="/static/css/main.css">
+    <script src="https://unpkg.com/@phosphor-icons/web"></script>
+</head>
+<body class="bg-secondary">
+    
+    <!-- Sidebar Navigation -->
+    <aside class="sidebar">
+        <div class="sidebar-header">
+            <div class="sidebar-logo">S</div>
+            <div class="sidebar-brand">SAMS</div>
+        </div>
+
+        <nav class="sidebar-nav">
+            <a href="/admindashboard" class="nav-item active">
+                <span class="nav-icon"><i class="ph ph-squares-four"></i></span>
+                <span>Dashboard</span>
+            </a>
+            
+            <div class="nav-section">
+                <div class="nav-section-title">Teaching</div>
+                <div class="nav-item">
+                    <span class="nav-icon"><i class="ph ph-books"></i></span>
+                    <span>My Subjects</span>
+                </div>
+                <!-- Subjects populated dynamically -->
+            </div>
+
+            <div class="nav-section">
+                <div class="nav-section-title">Attendance</div>
+                <a href="#today-classes" class="nav-item">
+                    <span class="nav-icon"><i class="ph ph-calendar-check"></i></span>
+                    <span>Mark Attendance</span>
+                </a>
+                <a href="/viewreport" class="nav-item">
+                    <span class="nav-icon"><i class="ph ph-chart-line-up"></i></span>
+                    <span>View Reports</span>
+                </a>
+            </div>
+        </nav>
+
+        <div class="sidebar-footer">
+            <a href="/login" class="nav-item danger">
+                <span class="nav-icon"><i class="ph ph-sign-out"></i></span>
+                <span>Logout</span>
+            </a>
+        </div>
+    </aside>
+
+    <!-- Sidebar Overlay for Mobile -->
+    <div class="sidebar-overlay"></div>
+
+    <!-- Main Content -->
+    <main class="main-content">
+        <!-- Topbar -->
+        <header class="topbar">
+            <div class="topbar-left">
+                <button class="sidebar-toggle btn-icon">
+                    <span>☰</span>
+                </button>
+                <h1 class="topbar-title">Faculty Dashboard</h1>
+            </div>
+
+            <div class="topbar-right">
+                <button class="btn btn-icon btn-ghost" data-theme-toggle>
+                    <i class="ph ph-moon text-xl icon-dark"></i>
+                    <i class="ph ph-sun text-xl icon-light" style="display: none;"></i>
+                </button>
+                <div class="avatar"><span class="text-xs">AD</span></div>
+            </div>
+        </header>
+
+        <!-- Dashboard Content -->
+        <div class="animate animate-fade-in-up">
+            
+            <!-- Stats Grid -->
+            <div class="stats-grid">
+                <!-- Today's Classes -->
+                <div class="card stat-card hover-lift">
+                    <div class="stat-icon primary">
+                        <i class="ph ph-chalkboard-teacher"></i>
+                    </div>
+                    <div class="stat-value">4</div>
+                    <div class="stat-label">Classes Today</div>
+                    <div class="stat-change text-muted">Next: 10:30 AM</div>
+                </div>
+
+                <!-- Pending Attendance -->
+                <div class="card stat-card hover-lift">
+                    <div class="stat-icon warning">
+                        <i class="ph ph-clock"></i>
+                    </div>
+                    <div class="stat-value">1</div>
+                    <div class="stat-label">Pending Review</div>
+                    <div class="stat-change negative">Action required</div>
+                </div>
+
+                <!-- Total Students -->
+                <div class="card stat-card hover-lift">
+                    <div class="stat-icon secondary">
+                        <i class="ph ph-student"></i>
+                    </div>
+                    <div class="stat-value">145</div>
+                    <div class="stat-label">Total Students</div>
+                    <div class="stat-change positive">Across 3 Subjects</div>
+                </div>
+
+                <!-- Avg Attendance -->
+                <div class="card stat-card hover-lift">
+                    <div class="stat-icon success">
+                        <i class="ph ph-chart-pie-slice"></i>
+                    </div>
+                    <div class="stat-value">88%</div>
+                    <div class="stat-label">Avg Attendance</div>
+                    <div class="stat-change positive"><span><i class="ph ph-trend-up"></i></span> +2%</div>
+                </div>
+            </div>
+
+            <div class="grid lg:grid-cols-3 gap-6 mb-8">
+                
+                <!-- Quick Attendance -->
+                <div class="card col-span-1 border-primary" style="border-width: 1px;">
+                    <div class="card-header">
+                        <h3 class="card-title">Take Attendance</h3>
+                        <span class="badge badge-primary">Current Class</span>
+                    </div>
+                    <div class="card-body">
+                        <div class="flex items-center justify-between mb-4">
+                            <div>
+                                <div class="text-lg font-bold">CS-A (Year 2)</div>
+                                <div class="text-sm text-muted">Mathematics</div>
+                            </div>
+                            <div class="text-xl font-mono">10:00 AM</div>
+                        </div>
+                        <a href="/attendance" class="btn btn-primary w-full pulse">
+                            Mark Attendance Now
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Today's Classes -->
+                <div class="card lg:col-span-2">
+                    <div class="card-header">
+                        <h3 class="card-title">Today's Classes</h3>
+                    </div>
+                    <div class="card-body flex flex-col gap-4">
+                        <div class="flex items-center justify-between p-4 bg-secondary rounded-lg border border-border">
+                            <div class="flex items-center gap-4">
+                                <div class="icon-box bg-primary-muted text-primary">
+                                    <i class="ph ph-code"></i>
+                                </div>
+                                <div>
+                                    <div class="font-bold">CS-101: Intro to Programming</div>
+                                    <div class="text-sm text-muted">09:00 AM - 10:00 AM • Class A</div>
+                                </div>
+                            </div>
+                            <span class="badge badge-success">Completed</span>
+                        </div>
+                        
+                        <div class="flex items-center justify-between p-4 bg-secondary rounded-lg border border-border">
+                            <div class="flex items-center gap-4">
+                                <div class="icon-box bg-accent-muted text-accent">
+                                    <i class="ph ph-database"></i>
+                                </div>
+                                <div>
+                                    <div class="font-bold">CS-202: Database Systems</div>
+                                    <div class="text-sm text-muted">10:30 AM - 11:30 AM • Class B</div>
+                                </div>
+                            </div>
+                            <a href="/attendance" class="btn btn-primary btn-sm">Mark Attendance</a>
+                        </div>
+
+                        <div class="flex items-center justify-between p-4 bg-secondary rounded-lg border border-border">
+                            <div class="flex items-center gap-4">
+                                <div class="icon-box bg-info-muted text-info">
+                                    <i class="ph ph-brain"></i>
+                                </div>
+                                <div>
+                                    <div class="font-bold">AI-301: Machine Learning</div>
+                                    <div class="text-sm text-muted">02:00 PM - 03:00 PM • Class C</div>
+                                </div>
+                            </div>
+                            <span class="badge badge-secondary">Upcoming</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </main>
+
+    <!-- Scripts -->
+    <script src="/static/js/theme.js"></script>
+    <script src="/static/js/components.js"></script>
+    <script src="/static/js/dashboard.js"></script>
+</body>
+</html>

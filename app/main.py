@@ -4,7 +4,7 @@ from fastapi.staticfiles import StaticFiles
 from fastapi.templating import Jinja2Templates
 from sqlalchemy.orm import Session
 #from . import models, crud, schemas
-from crud.database import engine, get_db, admin_id, sid, class_id
+from app.crud.database import engine, get_db
 
 #models.Base.metadata.create_all(bind=engine)
 app = FastAPI()
@@ -30,7 +30,7 @@ async def adddmins(request: Request):
 
 @app.get("/removeadmins/{admin_id}", response_class=HTMLResponse)
 async def removeadmins(request: Request, admin_id: int):
-    return templates.TemplateResponse("manage_admins.html", {"request": request}, {"admin_id": admin_id})
+    return templates.TemplateResponse("manage_admins.html", {"request": request, "admin_id": admin_id})
 
 @app.get("/masterdashboard", response_class=HTMLResponse)
 async def masterAdminDashboard(request: Request):
@@ -46,7 +46,7 @@ async def addstudent(request: Request):
 
 @app.get("/removestudent/{student_id}", response_class=HTMLResponse)
 async def removestudent(request: Request, student_id: int):
-    return templates.TemplateResponse("arstudent.html", {"request": request}, {"student_id" : sid})
+    return templates.TemplateResponse("manage_student.html", {"request": request, "student_id" : student_id})
 
 @app.get("/addclass", response_class=HTMLResponse)
 async def addclass(request: Request):
@@ -54,7 +54,7 @@ async def addclass(request: Request):
 
 @app.get("/removeclass/{class_id}", response_class=HTMLResponse)
 async def removeclass(request: Request, class_id: int):
-    return templates.TemplateResponse("manage_class.html", {"request": request}, {"class_id" : class_id})
+    return templates.TemplateResponse("manage_class.html", {"request": request, "class_id" : class_id})
 
 @app.get("/viewreport", response_class=HTMLResponse)
 async def viewreport(request: Request):
@@ -114,7 +114,7 @@ async def add_admin(
 @app.post("/removeadmins/{admin_id}", response_class=HTMLResponse)
 async def remove_admins(
     request: Request,
-    admin_id: int = Form(...),
+    admin_id: int,
     db: Session = Depends(get_db)
 ):
     return templates.TemplateResponse("manage_admins.html", {"request": request, "message": "Admin removed!"})
@@ -135,8 +135,7 @@ async def add_student(
 @app.post("/removestudent/{student_id}", response_class=HTMLResponse)
 async def remove_student(
         request: Request,
-        stu_reg_no: str = Form(...),
-        stu_name: str = Form(...),
+        student_id: int,
         db: Session = Depends(get_db)
 ):
     return templates.TemplateResponse("manage_student.html", {"request": request, "message": "Student removed!"})
@@ -153,7 +152,7 @@ async def add_class(
 @app.post("/removeclass/{class_id}", response_class=HTMLResponse)
 async def remove_class(
     request: Request,
-    class_id: int = Form(...),
+    class_id: int,
     db: Session = Depends(get_db)
 ):
     return templates.TemplateResponse("manage_class.html", {"request": request, "message": "Class removed!"})
@@ -172,3 +171,29 @@ async def assign_subject(
     db: Session = Depends(get_db)
 ):
     return templates.TemplateResponse("manage_subject.html", {"request": request, "message": "Subject assigned!"})
+
+@app.get("/studentdashboard", response_class=HTMLResponse)
+async def student_dashboard(request: Request):
+    return templates.TemplateResponse("student_dashboard.html", {"request": request})
+
+@app.get("/attendance", response_class=HTMLResponse)
+async def view_attendance_page(request: Request):
+    return templates.TemplateResponse("attendance.html", {"request": request})
+
+@app.post("/attendance", response_class=HTMLResponse)
+async def mark_attendance(
+    request: Request,
+    db: Session = Depends(get_db)
+):
+    # Logic to save attendance would go here
+    return templates.TemplateResponse("attendance.html", {"request": request, "message": "Attendance marked successfully!"})
+
+@app.post("/studentlogin")
+async def student_login_post(
+    request: Request,
+    inst_code: str = Form(...),
+    reg_no: str = Form(...),
+    password: str = Form(...),
+    db: Session = Depends(get_db)
+):
+    return templates.TemplateResponse("student_dashboard.html", {"request": request})

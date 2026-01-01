@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Assign Subjects">
+    <title>Assign Subjects - SAMS</title>
+    <link rel="stylesheet" href="/static/css/main.css">
+    <script src="https://unpkg.com/@phosphor-icons/web"></script>
+</head>
+<body class="bg-secondary">
+    
+    <!-- Sidebar Navigation -->
+    <aside class="sidebar">
+        <div class="sidebar-header">
+            <div class="sidebar-logo">S</div>
+            <div class="sidebar-brand">SAMS</div>
+        </div>
+
+        <nav class="sidebar-nav">
+            <a href="/masterdashboard" class="nav-item">
+                <span class="nav-icon"><i class="ph ph-squares-four"></i></span>
+                <span>Dashboard</span>
+            </a>
+            
+            <div class="nav-section">
+                <div class="nav-section-title">Management</div>
+                <a href="/addadmins" class="nav-item">
+                    <span class="nav-icon"><i class="ph ph-user-gear"></i></span>
+                    <span>Admins</span>
+                </a>
+                <a href="/addclass" class="nav-item">
+                    <span class="nav-icon"><i class="ph ph-chalkboard-teacher"></i></span>
+                    <span>Classes</span>
+                </a>
+                <a href="/addstudent" class="nav-item">
+                    <span class="nav-icon"><i class="ph ph-student"></i></span>
+                    <span>Students</span>
+                </a>
+                <a href="/assignsubject" class="nav-item active">
+                    <span class="nav-icon"><i class="ph ph-books"></i></span>
+                    <span>Subjects</span>
+                </a>
+            </div>
+
+            <div class="nav-section">
+                <div class="nav-section-title">Reports</div>
+                <a href="/viewreport" class="nav-item" title="Coming Soon">
+                    <span class="nav-icon"><i class="ph ph-chart-line-up"></i></span>
+                    <span>Reports</span>
+                </a>
+            </div>
+        </nav>
+
+        <div class="sidebar-footer">
+            <a href="/login" class="nav-item danger">
+                <span class="nav-icon"><i class="ph ph-sign-out"></i></span>
+                <span>Logout</span>
+            </a>
+        </div>
+    </aside>
+
+    <!-- Sidebar Overlay for Mobile -->
+    <div class="sidebar-overlay"></div>
+
+    <!-- Main Content -->
+    <main class="main-content">
+        <!-- Topbar -->
+        <header class="topbar">
+            <div class="topbar-left">
+                <button class="sidebar-toggle btn-icon">
+                    <span>☰</span>
+                </button>
+                <h1 class="topbar-title">Assign Subjects</h1>
+            </div>
+
+            <div class="topbar-right">
+                <button class="btn btn-icon btn-ghost" data-theme-toggle>
+                    <i class="ph ph-moon text-xl icon-dark"></i>
+                    <i class="ph ph-sun text-xl icon-light" style="display: none;"></i>
+                </button>
+                <div class="avatar"><span class="text-xs">MA</span></div>
+            </div>
+        </header>
+
+        <!-- Content -->
+        <div class="animate animate-fade-in-up">
+            
+            <!-- Assign Form -->
+            <div class="card max-w-2xl mx-auto mb-8">
+                <div class="card-header">
+                    <h3 class="card-title">Assign Subject to Admin</h3>
+                    <p class="card-subtitle">Select an admin and assign a subject for them to manage</p>
+                </div>
+                <div class="card-body">
+                    <form action="/assignsubject" method="POST">
+                        <div class="grid md:grid-cols-2 gap-4 mb-6">
+                            <div class="form-group">
+                                <label class="form-label required">Select Admin</label>
+                                <select name="admin_id" class="form-select" required>
+                                    <option value="" disabled selected>Choose an admin...</option>
+                                    <option value="1">John Smith (ID: 1)</option>
+                                    <option value="2">Jane Doe (ID: 2)</option>
+                                    <!-- Dynamic options -->
+                                </select>
+                            </div>
+
+                            <div class="form-group">
+                                <label class="form-label required">Subject Name</label>
+                                <input type="text" name="subject" class="form-input" placeholder="Ex. Mathematics" required>
+                            </div>
+                        </div>
+
+                        <button type="submit" class="btn btn-primary w-full">Assign Subject</button>
+                    </form>
+                </div>
+            </div>
+
+            <!-- Current Assignments -->
+            <div class="card">
+                <div class="card-header">
+                    <h3 class="card-title">Current Assignments</h3>
+                </div>
+                <div class="card-body p-0">
+                    <div class="overflow-x-auto">
+                        <table class="table">
+                            <thead>
+                                <tr>
+                                    <th>Admin Name</th>
+                                    <th>Admin ID</th>
+                                    <th>Subject Assigned</th>
+                                    <th>Actions</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td class="font-medium">John Smith</td>
+                                    <td>#1</td>
+                                    <td><span class="badge badge-secondary">Physics</span></td>
+                                    <td>
+                                        <button class="btn btn-sm btn-ghost text-error">Unassign</button>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td class="font-medium">Jane Doe</td>
+                                    <td>#2</td>
+                                    <td><span class="badge badge-secondary">Chemistry</span></td>
+                                    <td>
+                                        <button class="btn btn-sm btn-ghost text-error">Unassign</button>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </main>
+
+    <!-- Scripts -->
+    <script src="/static/js/theme.js"></script>
+    <script src="/static/js/components.js"></script>
+    <script src="/static/js/dashboard.js"></script>
+</body>
+</html>

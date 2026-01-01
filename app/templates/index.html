@@ -1,0 +1,232 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Student Attendance Management System - Modern, efficient, and secure attendance tracking for educational institutions">
+    <title>SAMS - Student Attendance Management System</title>
+    <link rel="stylesheet" href="/static/css/main.css">
+    <script src="https://unpkg.com/@phosphor-icons/web"></script>
+</head>
+<body>
+    <!-- Hero Section -->
+    <section class="hero">
+        <!-- Animated Background Orbs -->
+        <div class="hero-background">
+            <div class="hero-orb hero-orb-1"></div>
+            <div class="hero-orb hero-orb-2"></div>
+            <div class="hero-orb hero-orb-3"></div>
+        </div>
+
+        <!-- Navigation -->
+        <nav class="hero-nav" style="position: absolute; top: 0; left: 0; right: 0; padding: var(--space-6); display: flex; justify-content: space-between; align-items: center; z-index: 10;">
+            <div class="flex items-center gap-3">
+                <div class="sidebar-logo">S</div>
+                <span class="text-xl font-bold text-primary">SAMS</span>
+            </div>
+            <div class="flex items-center gap-4">
+                <button class="btn btn-ghost" data-theme-toggle>
+                    <i class="ph ph-moon text-xl icon-dark"></i>
+                    <i class="ph ph-sun text-xl icon-light" style="display: none;"></i>
+                </button>
+                <a href="/login" class="btn btn-secondary">Sign In</a>
+                <a href="/register" class="btn btn-primary">Get Started</a>
+            </div>
+        </nav>
+
+        <!-- Hero Content -->
+        <div class="hero-content animate animate-fade-in-up">
+            <div class="hero-badge animate stagger-1">
+                <span style="color: var(--success);">●</span>
+                Trusted by 500+ Institutions
+            </div>
+            
+            <h1 class="hero-title">
+                Smart Attendance <br>
+                <span class="gradient-text">Made Simple</span>
+            </h1>
+            
+            <p class="hero-description">
+                Streamline your institution's attendance management with our modern, 
+                intuitive platform. Track, analyze, and improve student engagement effortlessly.
+            </p>
+            
+            <div class="hero-buttons">
+                <a href="/register" class="btn btn-primary btn-lg animate stagger-2">
+                    <span>Get Started Free</span>
+                    <i class="ph ph-arrow-right"></i>
+                </a>
+                <a href="#features" class="btn btn-secondary btn-lg animate stagger-3">
+                    <span>Learn More</span>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Features Section -->
+    <section id="features" class="py-8" style="background: var(--bg-secondary); padding: var(--space-24) 0;">
+        <div class="container">
+            <div class="text-center mb-8">
+                <h2 class="text-3xl font-bold mb-4 reveal">Why Choose SAMS?</h2>
+                <p class="text-secondary" style="max-width: 600px; margin: 0 auto;">
+                    Everything you need to manage attendance efficiently in one powerful platform.
+                </p>
+            </div>
+
+            <div class="features-grid">
+                <!-- Feature 1 -->
+                <div class="card feature-card hover-lift reveal stagger-1">
+                    <div class="feature-icon" style="background: var(--primary-muted); color: var(--primary);">
+                        <i class="ph ph-chart-bar"></i>
+                    </div>
+                    <h3 class="feature-title">Real-time Analytics</h3>
+                    <p class="feature-description">
+                        Get instant insights with interactive dashboards and comprehensive reports.
+                    </p>
+                </div>
+
+                <!-- Feature 2 -->
+                <div class="card feature-card hover-lift reveal stagger-2">
+                    <div class="feature-icon" style="background: var(--secondary-muted); color: var(--secondary);">
+                        <i class="ph ph-users"></i>
+                    </div>
+                    <h3 class="feature-title">Multi-role Access</h3>
+                    <p class="feature-description">
+                        Separate dashboards for Master Admins, Admins, and Students with tailored features.
+                    </p>
+                </div>
+
+                <!-- Feature 3 -->
+                <div class="card feature-card hover-lift reveal stagger-3">
+                    <div class="feature-icon" style="background: var(--accent-muted); color: var(--accent);">
+                        <i class="ph ph-bell"></i>
+                    </div>
+                    <h3 class="feature-title">Smart Notifications</h3>
+                    <p class="feature-description">
+                        Automated alerts for low attendance, announcements, and important updates.
+                    </p>
+                </div>
+
+                <!-- Feature 4 -->
+                <div class="card feature-card hover-lift reveal stagger-4">
+                    <div class="feature-icon" style="background: var(--success-muted); color: var(--success);">
+                        <i class="ph ph-device-mobile"></i>
+                    </div>
+                    <h3 class="feature-title">Fully Responsive</h3>
+                    <p class="feature-description">
+                        Access your dashboard from any device - desktop, tablet, or mobile.
+                    </p>
+                </div>
+
+                <!-- Feature 5 -->
+                <div class="card feature-card hover-lift reveal stagger-5">
+                    <div class="feature-icon" style="background: var(--warning-muted); color: var(--warning);">
+                        <i class="ph ph-clipboard-text"></i>
+                    </div>
+                    <h3 class="feature-title">Easy Reports</h3>
+                    <p class="feature-description">
+                        Generate detailed attendance reports by class, subject, or student with one click.
+                    </p>
+                </div>
+
+                <!-- Feature 6 -->
+                <div class="card feature-card hover-lift reveal stagger-6">
+                    <div class="feature-icon" style="background: var(--info-muted); color: var(--info);">
+                        <i class="ph ph-lock-key"></i>
+                    </div>
+                    <h3 class="feature-title">Secure & Private</h3>
+                    <p class="feature-description">
+                        Enterprise-grade security with encrypted data and role-based access control.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- How It Works Section -->
+    <section style="padding: var(--space-24) 0; background: var(--bg-primary);">
+        <div class="container">
+            <div class="text-center mb-8">
+                <h2 class="text-3xl font-bold mb-4 reveal">How It Works</h2>
+                <p class="text-secondary">Get started in just three simple steps</p>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <!-- Step 1 -->
+                <div class="text-center reveal stagger-1">
+                    <div style="width: 80px; height: 80px; background: var(--gradient-primary); border-radius: var(--radius-full); display: flex; align-items: center; justify-content: center; margin: 0 auto var(--space-6); font-size: var(--text-2xl); font-weight: var(--font-bold); color: white;">
+                        1
+                    </div>
+                    <h3 class="text-xl font-semibold mb-3">Register Institution</h3>
+                    <p class="text-secondary text-sm">
+                        Sign up and set up your institution profile in minutes.
+                    </p>
+                </div>
+
+                <!-- Step 2 -->
+                <div class="text-center reveal stagger-2">
+                    <div style="width: 80px; height: 80px; background: var(--gradient-primary); border-radius: var(--radius-full); display: flex; align-items: center; justify-content: center; margin: 0 auto var(--space-6); font-size: var(--text-2xl); font-weight: var(--font-bold); color: white;">
+                        2
+                    </div>
+                    <h3 class="text-xl font-semibold mb-3">Add Classes & Students</h3>
+                    <p class="text-secondary text-sm">
+                        Create classes, add students, and assign subjects to admins.
+                    </p>
+                </div>
+
+                <!-- Step 3 -->
+                <div class="text-center reveal stagger-3">
+                    <div style="width: 80px; height: 80px; background: var(--gradient-primary); border-radius: var(--radius-full); display: flex; align-items: center; justify-content: center; margin: 0 auto var(--space-6); font-size: var(--text-2xl); font-weight: var(--font-bold); color: white;">
+                        3
+                    </div>
+                    <h3 class="text-xl font-semibold mb-3">Track Attendance</h3>
+                    <p class="text-secondary text-sm">
+                        Start marking attendance and get real-time insights instantly.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section style="padding: var(--space-24) 0; background: var(--gradient-hero); position: relative; overflow: hidden;">
+        <div class="hero-background" style="opacity: 0.3;">
+            <div class="hero-orb hero-orb-1"></div>
+            <div class="hero-orb hero-orb-2"></div>
+        </div>
+        <div class="container text-center" style="position: relative; z-index: 1;">
+            <h2 class="text-3xl font-bold mb-4 reveal">Ready to Get Started?</h2>
+            <p class="text-secondary mb-8" style="max-width: 500px; margin: 0 auto var(--space-8);">
+                Join hundreds of institutions already using SAMS to streamline their attendance management.
+            </p>
+            <a href="/register" class="btn btn-primary btn-lg reveal">
+                Register Your Institution
+            </a>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer style="background: var(--bg-secondary); padding: var(--space-12) 0; border-top: 1px solid var(--border-secondary);">
+        <div class="container">
+            <div class="flex flex-col md:flex-row justify-between items-center gap-6">
+                <div class="flex items-center gap-3">
+                    <div class="sidebar-logo">S</div>
+                    <span class="font-semibold">SAMS</span>
+                </div>
+                <p class="text-sm text-muted">
+                    © 2024 Student Attendance Management System. All rights reserved.
+                </p>
+                <div class="flex gap-4">
+                    <a href="#" class="text-secondary hover-scale">Privacy</a>
+                    <a href="#" class="text-secondary hover-scale">Terms</a>
+                    <a href="#" class="text-secondary hover-scale">Contact</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Scripts -->
+    <script src="/static/js/theme.js"></script>
+    <script src="/static/js/components.js"></script>
+</body>
+</html>

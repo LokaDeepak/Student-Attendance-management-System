@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Register your institution with SAMS">
+    <title>Register Institution - SAMS</title>
+    <link rel="stylesheet" href="/static/css/main.css">
+    <script src="https://unpkg.com/@phosphor-icons/web"></script>
+</head>
+<body>
+    <div class="auth-container">
+        <!-- Background Effects -->
+        <div class="hero-background">
+            <div class="hero-orb hero-orb-1"></div>
+            <div class="hero-orb hero-orb-3"></div>
+        </div>
+
+        <!-- Auth Card -->
+        <div class="auth-card animate animate-fade-in-up" style="max-width: 600px;">
+            <!-- Header -->
+            <div class="auth-header">
+                <a href="/" class="auth-logo">S</a>
+                <h1 class="auth-title">Register Institution</h1>
+                <p class="auth-subtitle">Create your institution's account</p>
+            </div>
+
+            <!-- Progress Steps (Visual) -->
+            <div class="flex justify-between items-center mb-8 px-4" style="position: relative;">
+                <div style="position: absolute; top: 12px; left: 0; right: 0; height: 2px; background: var(--border-secondary); z-index: 0;"></div>
+                
+                <div class="flex flex-col items-center gap-2" style="position: relative; z-index: 1;">
+                    <div class="w-6 h-6 rounded-full bg-primary flex items-center justify-center text-white text-xs font-bold">1</div>
+                    <span class="text-xs font-medium text-primary">Institution</span>
+                </div>
+                
+                <div class="flex flex-col items-center gap-2" style="position: relative; z-index: 1;">
+                    <div class="w-6 h-6 rounded-full bg-surface border border-primary flex items-center justify-center text-primary text-xs font-bold">2</div>
+                    <span class="text-xs font-medium text-secondary">Admin</span>
+                </div>
+                
+                <div class="flex flex-col items-center gap-2" style="position: relative; z-index: 1;">
+                    <div class="w-6 h-6 rounded-full bg-surface border border-secondary flex items-center justify-center text-secondary text-xs font-bold">3</div>
+                    <span class="text-xs font-medium text-secondary">Review</span>
+                </div>
+            </div>
+
+            <form class="auth-form" action="/register" method="POST" onsubmit="return validateRegistration(this)">
+                <!-- Section 1: Institution Details -->
+                <div class="nav-section-title mb-4">Institution Details</div>
+                
+                <div class="grid md:grid-cols-2 gap-4">
+                    <div class="form-group">
+                        <label class="form-label required" for="inst_name">Institution Name</label>
+                        <input type="text" id="inst_name" name="inst_name" class="form-input" required placeholder="Ex. City University">
+                    </div>
+    
+                    <div class="form-group">
+                        <label class="form-label required" for="inst_email">Email Address</label>
+                        <input type="email" id="inst_email" name="inst_email" class="form-input" required placeholder="contact@university.edu">
+                    </div>
+                </div>
+
+                <div class="grid md:grid-cols-2 gap-4">
+                    <div class="form-group">
+                        <label class="form-label required" for="inst_phone">Phone Number</label>
+                        <input type="tel" id="inst_phone" name="inst_phone" class="form-input" required placeholder="+1 (555) 000-0000">
+                    </div>
+    
+                    <div class="form-group">
+                        <label class="form-label required" for="inst_address">Address</label>
+                        <input type="text" id="inst_address" name="inst_address" class="form-input" required placeholder="123 Education Lane">
+                    </div>
+                </div>
+
+                <div class="auth-divider"><span>Master Admin Configuration</span></div>
+
+                <!-- Section 2: Master Admin Details -->
+                <div class="grid md:grid-cols-2 gap-4">
+                    <div class="form-group">
+                        <label class="form-label required" for="master_admin_name">Admin Name</label>
+                        <input type="text" id="master_admin_name" name="master_admin_name" class="form-input" required placeholder="Full Name">
+                    </div>
+
+                    <div class="form-group">
+                        <label class="form-label required" for="admin_username">Username</label>
+                        <input type="text" id="admin_username" name="admin_username" class="form-input" required placeholder="admin_user">
+                    </div>
+                </div>
+
+                <div class="grid md:grid-cols-2 gap-4">
+                    <div class="form-group">
+                        <label class="form-label required" for="inst_password">Password</label>
+                        <div class="input-group">
+                            <span class="input-icon"><i class="ph ph-lock-key"></i></span>
+                            <input type="password" id="inst_password" name="inst_password" class="form-input" required placeholder="Minimum 8 characters">
+                        </div>
+                    </div>
+    
+                    <div class="form-group">
+                        <label class="form-label required" for="cnf_password">Confirm Password</label>
+                        <div class="input-group">
+                            <span class="input-icon"><i class="ph ph-lock-key"></i></span>
+                            <input type="password" id="cnf_password" name="cnf_password" class="form-input" required placeholder="Re-enter password">
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="form-group mt-2">
+                    <label class="form-check">
+                        <input type="checkbox" class="form-check-input" required>
+                        <span class="form-check-label text-xs">
+                            I agree to the <a href="#" class="text-primary">Terms of Service</a> and <a href="#" class="text-primary">Privacy Policy</a>
+                        </span>
+                    </label>
+                </div>
+
+                <button type="submit" class="btn btn-primary w-full mt-2">
+                    Complete Registration
+                </button>
+            </form>
+
+            <div class="auth-footer">
+                <p>Already have an account? <a href="/login" class="text-primary font-medium">Sign In</a></p>
+            </div>
+        </div>
+
+        <!-- Theme Toggle -->
+        <button class="btn btn-icon btn-secondary" data-theme-toggle 
+            style="position: fixed; top: var(--space-6); right: var(--space-6);">
+            <i class="ph ph-moon text-xl icon-dark"></i>
+            <i class="ph ph-sun text-xl icon-light" style="display: none;"></i>
+        </button>
+    </div>
+
+    <!-- Scripts -->
+    <script src="/static/js/theme.js"></script>
+    <script src="/static/js/components.js"></script>
+    <script>
+        function validateRegistration(form) {
+            const password = form.inst_password.value;
+            const confirm = form.cnf_password.value;
+            
+            if (password !== confirm) {
+                Toast.error('Passwords do not match!');
+                return false;
+            }
+            
+            if (password.length < 8) {
+                Toast.error('Password must be at least 8 characters long');
+                return false;
+            }
+            
+            return true;
+        }
+    </script>
+</body>
+</html>

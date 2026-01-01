@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Manage Students">
+    <title>Manage Students - SAMS</title>
+    <link rel="stylesheet" href="/static/css/main.css">
+    <script src="https://unpkg.com/@phosphor-icons/web"></script>
+</head>
+<body class="bg-secondary">
+    
+    <!-- Sidebar Navigation -->
+    <aside class="sidebar">
+        <div class="sidebar-header">
+            <div class="sidebar-logo">S</div>
+            <div class="sidebar-brand">SAMS</div>
+        </div>
+
+        <nav class="sidebar-nav">
+            <a href="/masterdashboard" class="nav-item">
+                <span class="nav-icon"><i class="ph ph-squares-four"></i></span>
+                <span>Dashboard</span>
+            </a>
+            
+            <div class="nav-section">
+                <div class="nav-section-title">Management</div>
+                <a href="/addadmins" class="nav-item">
+                    <span class="nav-icon"><i class="ph ph-user-gear"></i></span>
+                    <span>Admins</span>
+                </a>
+                <a href="/addclass" class="nav-item">
+                    <span class="nav-icon"><i class="ph ph-chalkboard-teacher"></i></span>
+                    <span>Classes</span>
+                </a>
+                <a href="/addstudent" class="nav-item active">
+                    <span class="nav-icon"><i class="ph ph-student"></i></span>
+                    <span>Students</span>
+                </a>
+                <a href="/assignsubject" class="nav-item">
+                    <span class="nav-icon"><i class="ph ph-books"></i></span>
+                    <span>Subjects</span>
+                </a>
+            </div>
+
+            <div class="nav-section">
+                <div class="nav-section-title">Reports</div>
+                <a href="/viewreport" class="nav-item" title="Coming Soon">
+                    <span class="nav-icon"><i class="ph ph-chart-line-up"></i></span>
+                    <span>Reports</span>
+                </a>
+            </div>
+        </nav>
+
+        <div class="sidebar-footer">
+            <a href="/login" class="nav-item danger">
+                <span class="nav-icon"><i class="ph ph-sign-out"></i></span>
+                <span>Logout</span>
+            </a>
+        </div>
+    </aside>
+
+    <!-- Sidebar Overlay for Mobile -->
+    <div class="sidebar-overlay"></div>
+
+    <!-- Main Content -->
+    <main class="main-content">
+        <!-- Topbar -->
+        <header class="topbar">
+            <div class="topbar-left">
+                <button class="sidebar-toggle btn-icon">
+                    <span>☰</span>
+                </button>
+                <h1 class="topbar-title">Manage Students</h1>
+            </div>
+
+            <div class="topbar-right">
+                <button class="btn btn-icon btn-ghost" data-theme-toggle>
+                    <i class="ph ph-moon text-xl icon-dark"></i>
+                    <i class="ph ph-sun text-xl icon-light" style="display: none;"></i>
+                </button>
+                <div class="avatar"><span class="text-xs">MA</span></div>
+            </div>
+        </header>
+
+        <!-- Content -->
+        <div class="animate animate-fade-in-up">
+            
+            <div class="grid lg:grid-cols-3 gap-6">
+                <!-- Add Student Form -->
+                <div class="card col-span-1">
+                    <div class="card-header">
+                        <h3 class="card-title">Add New Student</h3>
+                    </div>
+                    <div class="card-body">
+                        <form action="/addstudent" method="POST">
+                            <div class="form-group mb-4">
+                                <label class="form-label required">Full Name</label>
+                                <input type="text" name="stu_name" class="form-input" placeholder="Student Name" required>
+                            </div>
+
+                            <div class="form-group mb-4">
+                                <label class="form-label required">Registration No.</label>
+                                <input type="text" name="stu_reg_no" class="form-input" placeholder="Registration Number" required>
+                            </div>
+
+                            <div class="form-group mb-4">
+                                <label class="form-label required">Class ID</label>
+                                <input type="number" name="class_id" class="form-input" placeholder="Class ID" required>
+                            </div>
+
+                            <div class="form-group mb-4">
+                                <label class="form-label required">Email</label>
+                                <input type="email" name="stu_email" class="form-input" placeholder="Student Email" required>
+                            </div>
+                            
+                            <div class="form-group mb-6">
+                                <label class="form-label required">Phone</label>
+                                <input type="tel" name="stu_phone" class="form-input" placeholder="Phone Number" required>
+                            </div>
+
+                            <button type="submit" class="btn btn-primary w-full">Register Student</button>
+                        </form>
+                    </div>
+                </div>
+
+                <!-- Student List -->
+                <div class="card lg:col-span-2">
+                    <div class="card-header flex justify-between items-center">
+                        <h3 class="card-title">Enrolled Students</h3>
+                        <div class="flex gap-2">
+                            <div class="input-group">
+                                <span class="input-icon"><i class="ph ph-magnifying-glass"></i></span>
+                                <input type="text" class="form-input" placeholder="Search students...">
+                            </div>
+                            <button class="btn btn-secondary btn-sm">Filter</button>
+                        </div>
+                    </div>
+                    <div class="card-body p-0">
+                        <div class="overflow-x-auto">
+                            <table class="table">
+                                <thead>
+                                    <tr>
+                                        <th>#</th>
+                                        <th>Reg No</th>
+                                        <th>Name</th>
+                                        <th>Class</th>
+                                        <th>Contact</th>
+                                        <th>Actions</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td>1</td>
+                                        <td class="font-mono text-sm">2024001</td>
+                                        <td>
+                                            <div class="flex items-center gap-2">
+                                                <div class="avatar avatar-sm bg-accent">SJ</div>
+                                                <span class="font-medium">Sarah Jones</span>
+                                            </div>
+                                        </td>
+                                        <td><span class="badge badge-primary">CS-A</span></td>
+                                        <td class="text-sm">sarah@edu.com</td>
+                                        <td>
+                                            <form action="/removestudent/2024001" method="POST" class="inline-block">
+                                                <input type="hidden" name="student_id" value="2024001">
+                                                <button type="submit" class="btn btn-xs btn-ghost text-error" title="Remove">
+                                                    <i class="ph ph-trash"></i>
+                                                </button>
+                                            </form>
+                                            <button class="btn btn-xs btn-ghost" title="Edit">
+                                                <i class="ph ph-pencil-simple"></i>
+                                            </button>
+                                        </td>
+                                    </tr>
+                                    <!-- Dynamic rows would go here -->
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                    <!-- Pagination -->
+                    <div class="card-footer justify-between">
+                        <span class="text-xs text-muted">Showing 1 to 10 of 50 students</span>
+                        <div class="flex gap-1">
+                            <button class="btn btn-xs btn-secondary" disabled>Previous</button>
+                            <button class="btn btn-xs btn-secondary">Next</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </main>
+
+    <!-- Scripts -->
+    <script src="/static/js/theme.js"></script>
+    <script src="/static/js/components.js"></script>
+    <script src="/static/js/dashboard.js"></script>
+</body>
+</html>

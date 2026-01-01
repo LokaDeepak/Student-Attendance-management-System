@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Sign in to your SAMS account">
+    <title>Sign In - SAMS</title>
+    <link rel="stylesheet" href="/static/css/main.css">
+    <script src="https://unpkg.com/@phosphor-icons/web"></script>
+</head>
+<body>
+    <div class="auth-container">
+        <!-- Background Effects -->
+        <div class="hero-background">
+            <div class="hero-orb hero-orb-1"></div>
+            <div class="hero-orb hero-orb-2"></div>
+            <div class="hero-orb hero-orb-3"></div>
+        </div>
+
+        <!-- Auth Card -->
+        <div class="auth-card animate animate-fade-in-up">
+            <!-- Header -->
+            <div class="auth-header">
+                <a href="/" class="auth-logo">S</a>
+                <h1 class="auth-title">Welcome Back</h1>
+                <p class="auth-subtitle">Sign in to your account</p>
+            </div>
+
+            <!-- Login Type Tabs -->
+            <div class="tabs mb-6" data-tab-content="#login-forms">
+                <button class="tab active" data-tab="master-login">Master Admin</button>
+                <button class="tab" data-tab="admin-login">Admin</button>
+                <button class="tab" data-tab="student-login">Student</button>
+            </div>
+
+            <!-- Login Forms Container -->
+            <div id="login-forms">
+                <!-- Master Admin Login Form -->
+                <div id="master-login" class="tab-content active">
+                    <form class="auth-form" action="/masterlogin" method="POST">
+                        <div class="form-group">
+                            <label class="form-label required" for="master-inst-code">Institution Code</label>
+                            <div class="input-group">
+                                <span class="input-icon"><i class="ph ph-bank"></i></span>
+                                <input type="text" id="master-inst-code" name="inst_ode" class="form-input" 
+                                    placeholder="Enter your institution code" required>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label class="form-label required" for="master-admin-id">Admin Username</label>
+                            <div class="input-group">
+                                <span class="input-icon"><i class="ph ph-user"></i></span>
+                                <input type="text" id="master-admin-id" name="admin_id" class="form-input" 
+                                    placeholder="Enter your username" required>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label class="form-label required" for="master-password">Password</label>
+                            <div class="input-group">
+                                <span class="input-icon"><i class="ph ph-lock-key"></i></span>
+                                <input type="password" id="master-password" name="admin_password" class="form-input" 
+                                    placeholder="Enter your password" required>
+                                <button type="button" class="input-action btn btn-ghost btn-sm" onclick="togglePassword(this)">
+                                    <i class="ph ph-eye"></i>
+                                </button>
+                            </div>
+                        </div>
+
+                        <div class="flex justify-between items-center">
+                            <label class="form-check">
+                                <input type="checkbox" class="form-check-input" name="remember">
+                                <span class="form-check-label">Remember me</span>
+                            </label>
+                            <a href="#" class="text-sm text-primary">Forgot password?</a>
+                        </div>
+
+                        <button type="submit" class="btn btn-primary w-full">
+                            Sign In as Master Admin
+                        </button>
+                    </form>
+                </div>
+
+                <!-- Admin Login Form -->
+                <div id="admin-login" class="tab-content">
+                    <form class="auth-form" action="/adminlogin" method="POST">
+                        <div class="form-group">
+                            <label class="form-label required" for="admin-inst-code">Institution Code</label>
+                            <div class="input-group">
+                                <span class="input-icon"><i class="ph ph-bank"></i></span>
+                                <input type="text" id="admin-inst-code" name="inst_ode" class="form-input" 
+                                    placeholder="Enter your institution code" required>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label class="form-label required" for="admin-id">Admin Username</label>
+                            <div class="input-group">
+                                <span class="input-icon"><i class="ph ph-user"></i></span>
+                                <input type="text" id="admin-id" name="admin_id" class="form-input" 
+                                    placeholder="Enter your username" required>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label class="form-label required" for="admin-password">Password</label>
+                            <div class="input-group">
+                                <span class="input-icon"><i class="ph ph-lock-key"></i></span>
+                                <input type="password" id="admin-password" name="admin_password" class="form-input" 
+                                    placeholder="Enter your password" required>
+                                <button type="button" class="input-action btn btn-ghost btn-sm" onclick="togglePassword(this)">
+                                    <i class="ph ph-eye"></i>
+                                </button>
+                            </div>
+                        </div>
+
+                        <button type="submit" class="btn btn-primary w-full">
+                            Sign In as Admin
+                        </button>
+                    </form>
+                </div>
+
+                <!-- Student Login Form -->
+                <div id="student-login" class="tab-content">
+                    <form class="auth-form" action="/studentlogin" method="POST">
+                        <div class="form-group">
+                            <label class="form-label required" for="student-inst-code">Institution Code</label>
+                            <div class="input-group">
+                                <span class="input-icon"><i class="ph ph-bank"></i></span>
+                                <input type="text" id="student-inst-code" name="inst_code" class="form-input" 
+                                    placeholder="Enter your institution code" required>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label class="form-label required" for="student-reg-no">Registration Number</label>
+                            <div class="input-group">
+                                <span class="input-icon"><i class="ph ph-student"></i></span>
+                                <input type="text" id="student-reg-no" name="reg_no" class="form-input" 
+                                    placeholder="Enter your registration number" required>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label class="form-label required" for="student-password">Password</label>
+                            <div class="input-group">
+                                <span class="input-icon"><i class="ph ph-lock-key"></i></span>
+                                <input type="password" id="student-password" name="password" class="form-input" 
+                                    placeholder="Enter your password" required>
+                                <button type="button" class="input-action btn btn-ghost btn-sm" onclick="togglePassword(this)">
+                                    <i class="ph ph-eye"></i>
+                                </button>
+                            </div>
+                        </div>
+
+                        <button type="submit" class="btn btn-primary w-full">
+                            Sign In as Student
+                        </button>
+                    </form>
+                </div>
+            </div>
+
+            <!-- Footer -->
+            <div class="auth-footer">
+                <p>Don't have an account? <a href="/register" class="text-primary font-medium">Register Institution</a></p>
+            </div>
+        </div>
+
+        <!-- Theme Toggle -->
+        <button class="btn btn-icon btn-secondary" data-theme-toggle 
+            style="position: fixed; top: var(--space-6); right: var(--space-6);">
+            <i class="ph ph-moon text-xl icon-dark"></i>
+            <i class="ph ph-sun text-xl icon-light" style="display: none;"></i>
+        </button>
+    </div>
+
+    <!-- Scripts -->
+    <script src="/static/js/theme.js"></script>
+    <script src="/static/js/components.js"></script>
+    <script>
+        // Toggle password visibility
+        function togglePassword(button) {
+            const input = button.closest('.input-group').querySelector('input');
+            if (input.type === 'password') {
+                input.type = 'text';
+                button.innerHTML = '<i class="ph ph-eye-slash"></i>';
+            } else {
+                input.type = 'password';
+                button.innerHTML = '<i class="ph ph-eye"></i>';
+            }
+        }
+
+        // Show success message if redirected after registration
+        const urlParams = new URLSearchParams(window.location.search);
+        if (urlParams.get('registered') === 'true') {
+            Toast.success('Registration successful! Please sign in.');
+        }
+    </script>
+</body>
+</html>

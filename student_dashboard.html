@@ -1,0 +1,353 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Student Dashboard — Giga Nigga</title>
+  <link rel="stylesheet" href="student_dashboard.css">
+</head>
+<body>
+  <div class="deco-element deco1"></div>
+  <div class="deco-element deco2"></div>
+  <div class="deco-element deco3"></div>
+
+  <!-- Topbar -->
+  <header class="topbar">
+    <div class="brand">
+      <div class="logo-box">GN</div>
+      <h1>Giga Nigga</h1>
+    </div>
+
+    <div class="account">
+      <div style="text-align:right;">
+        <div class="name" id="accountName">Student</div>
+        <div style="font-size:12px; color:rgba(255,255,255,0.85);" id="accountEmail">student@gn.edu</div>
+      </div>
+      <div class="avatar" id="accountAvatar">ST</div>
+    </div>
+  </header>
+
+  <!-- Shell -->
+  <div class="app-shell">
+    <!-- Sidebar -->
+    <aside class="sidebar">
+      <h3>Student Portal</h3>
+      <div class="divider"></div>
+      <nav class="nav-list" id="navList">
+        <div class="nav-btn active" data-view="dashboard">🏠 Dashboard</div>
+        <div class="nav-btn" data-view="subjects">📚 My Subjects</div>
+        <div class="nav-btn" data-view="attendance">📅 Attendance History</div>
+        <div class="nav-btn" data-view="announcements">📢 Announcements</div>
+        <div class="nav-btn" data-view="requests">📝 Submit Request</div>
+        <div class="nav-btn" data-view="profile">⚙️ Profile</div>
+      </nav>
+    </aside>
+
+    <!-- Main content -->
+    <main class="content" id="mainContent">
+      
+      <!-- Dashboard View -->
+      <section id="view-dashboard" class="view">
+        <h2>Dashboard</h2>
+        <div class="subtle">Welcome back! Here's your attendance overview.</div>
+
+        <div class="stats-grid">
+          <div class="stat-card">
+            <div class="stat-icon">📊</div>
+            <div class="stat-value" id="overallAttendance">85%</div>
+            <div class="stat-label">Overall Attendance</div>
+            <div class="progress-bar">
+              <div class="progress-fill" id="overallProgress" style="width: 85%"></div>
+            </div>
+          </div>
+
+          <div class="stat-card">
+            <div class="stat-icon">✓</div>
+            <div class="stat-value" id="classesPresent">68</div>
+            <div class="stat-label">Classes Present</div>
+          </div>
+
+          <div class="stat-card">
+            <div class="stat-icon">✗</div>
+            <div class="stat-value" id="classesAbsent">12</div>
+            <div class="stat-label">Classes Absent</div>
+          </div>
+
+          <div class="stat-card">
+            <div class="stat-icon">📚</div>
+            <div class="stat-value" id="totalSubjects">6</div>
+            <div class="stat-label">Total Subjects</div>
+          </div>
+        </div>
+
+        <div class="card">
+          <h3 style="margin-bottom:12px;">Subject-wise Attendance</h3>
+          <table id="dashboardSubjectsTable">
+            <thead>
+              <tr>
+                <th>Subject</th>
+                <th>Code</th>
+                <th>Present</th>
+                <th>Absent</th>
+                <th>Percentage</th>
+                <th>Status</th>
+              </tr>
+            </thead>
+            <tbody>
+              <!-- Will be populated by JS -->
+            </tbody>
+          </table>
+        </div>
+
+        <div class="card">
+          <h3 style="margin-bottom:12px;">Recent Announcements</h3>
+          <div id="recentAnnouncements">
+            <!-- Will be populated by JS -->
+          </div>
+        </div>
+      </section>
+
+      <!-- My Subjects View -->
+      <section id="view-subjects" class="view" style="display:none;">
+        <h2>My Subjects</h2>
+        <div class="subtle">View detailed information about your enrolled subjects.</div>
+
+        <div class="subjects-grid" id="subjectsGrid">
+          <!-- Will be populated by JS -->
+        </div>
+      </section>
+
+      <!-- Attendance History View -->
+      <section id="view-attendance" class="view" style="display:none;">
+        <h2>Attendance History</h2>
+        <div class="subtle">View your complete attendance records.</div>
+
+        <div class="card">
+          <h3 style="margin-bottom:12px;">Filter Attendance</h3>
+          <div style="display:grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap:12px;">
+            <div class="form-row">
+              <label>Select Subject</label>
+              <select id="filterSubject">
+                <option value="all">All Subjects</option>
+                <option value="DS">Data Structures</option>
+                <option value="ALGO">Algorithms</option>
+                <option value="DBMS">Database Management</option>
+                <option value="OS">Operating Systems</option>
+                <option value="CN">Computer Networks</option>
+                <option value="SE">Software Engineering</option>
+              </select>
+            </div>
+            <div class="form-row">
+              <label>Select Month</label>
+              <select id="filterMonth">
+                <option value="current">Current Month</option>
+                <option value="0">January</option>
+                <option value="1">February</option>
+                <option value="2">March</option>
+                <option value="3">April</option>
+                <option value="4">May</option>
+                <option value="5">June</option>
+                <option value="6">July</option>
+                <option value="7">August</option>
+                <option value="8">September</option>
+                <option value="9">October</option>
+                <option value="10">November</option>
+                <option value="11">December</option>
+              </select>
+            </div>
+          </div>
+          <button class="btn primary" id="applyFilter" style="margin-top:12px;">Apply Filter</button>
+        </div>
+
+        <div class="card">
+          <h3 style="margin-bottom:12px;">Calendar View</h3>
+          <div class="calendar-header">
+            <button class="btn ghost" id="prevMonth">← Previous</button>
+            <h4 id="calendarTitle">November 2024</h4>
+            <button class="btn ghost" id="nextMonth">Next →</button>
+          </div>
+          <div class="calendar-grid" id="calendarGrid">
+            <!-- Will be populated by JS -->
+          </div>
+          <div style="display:flex; gap:16px; margin-top:16px; font-size:13px;">
+            <span><span style="display:inline-block; width:12px; height:12px; background:#00ff88; border-radius:3px;"></span> Present</span>
+            <span><span style="display:inline-block; width:12px; height:12px; background:#ff6666; border-radius:3px;"></span> Absent</span>
+            <span><span style="display:inline-block; width:12px; height:12px; border:2px solid #0088ff; border-radius:3px;"></span> Today</span>
+          </div>
+        </div>
+
+        <div class="card">
+          <h3 style="margin-bottom:12px;">Detailed Records</h3>
+          <table id="attendanceHistoryTable">
+            <thead>
+              <tr>
+                <th>Date</th>
+                <th>Subject</th>
+                <th>Faculty</th>
+                <th>Status</th>
+              </tr>
+            </thead>
+            <tbody>
+              <!-- Will be populated by JS -->
+            </tbody>
+          </table>
+        </div>
+      </section>
+
+      <!-- Announcements View -->
+      <section id="view-announcements" class="view" style="display:none;">
+        <h2>Announcements</h2>
+        <div class="subtle">Stay updated with latest announcements from faculty and administration.</div>
+
+        <div id="announcementsList">
+          <!-- Will be populated by JS -->
+        </div>
+      </section>
+
+      <!-- Submit Request View -->
+      <section id="view-requests" class="view" style="display:none;">
+        <h2>Submit Request</h2>
+        <div class="subtle">Submit requests for leave, attendance queries, or other issues.</div>
+
+        <div class="card">
+          <h3 style="margin-bottom:12px;">New Request</h3>
+          <form id="requestForm">
+            <div class="form-row">
+              <label>Request Type</label>
+              <select id="requestType" required>
+                <option value="">Select Type</option>
+                <option value="leave">Leave Application</option>
+                <option value="attendance">Attendance Query</option>
+                <option value="exam">Exam Related</option>
+                <option value="technical">Technical Issue</option>
+                <option value="other">Other</option>
+              </select>
+            </div>
+
+            <div class="form-row">
+              <label>Subject</label>
+              <input type="text" id="requestSubject" placeholder="Brief subject of your request" required />
+            </div>
+
+            <div class="form-row">
+              <label>Description</label>
+              <textarea id="requestDescription" placeholder="Describe your request in detail..." required></textarea>
+            </div>
+
+            <div class="form-row" id="dateRangeRow" style="display:none;">
+              <label>Date Range (for leave applications)</label>
+              <div style="display:grid; grid-template-columns: 1fr 1fr; gap:12px;">
+                <input type="date" id="leaveFromDate" />
+                <input type="date" id="leaveToDate" />
+              </div>
+            </div>
+
+            <button type="submit" class="btn primary">Submit Request</button>
+          </form>
+        </div>
+
+        <div class="card">
+          <h3 style="margin-bottom:12px;">My Requests</h3>
+          <table id="myRequestsTable">
+            <thead>
+              <tr>
+                <th>Date</th>
+                <th>Type</th>
+                <th>Subject</th>
+                <th>Status</th>
+              </tr>
+            </thead>
+            <tbody>
+              <!-- Will be populated by JS -->
+            </tbody>
+          </table>
+        </div>
+      </section>
+
+      <!-- Profile View -->
+      <section id="view-profile" class="view" style="display:none;">
+        <h2>Profile</h2>
+        <div class="subtle">Manage your personal information and settings.</div>
+
+        <div class="card">
+          <h3 style="margin-bottom:12px;">Personal Information</h3>
+          <div style="display:grid; grid-template-columns: repeat(2, 1fr); gap:16px;">
+            <div class="form-row">
+              <label>Full Name</label>
+              <input type="text" id="profileName" value="Rahul Sharma" readonly />
+            </div>
+            <div class="form-row">
+              <label>Student ID</label>
+              <input type="text" id="profileId" value="ST001" readonly />
+            </div>
+            <div class="form-row">
+              <label>Email</label>
+              <input type="email" id="profileEmail" value="rahul.sharma@gn.edu" />
+            </div>
+            <div class="form-row">
+              <label>Phone</label>
+              <input type="text" id="profilePhone" value="+91 9876543210" />
+            </div>
+            <div class="form-row">
+              <label>Department</label>
+              <input type="text" id="profileDept" value="BCA" readonly />
+            </div>
+            <div class="form-row">
+              <label>Year & Section</label>
+              <input type="text" id="profileYear" value="2nd Year - Section A" readonly />
+            </div>
+          </div>
+          <button class="btn primary" id="updateProfile" style="margin-top:16px;">Update Profile</button>
+        </div>
+
+        <div class="card">
+          <h3 style="margin-bottom:12px;">Change Password</h3>
+          <form id="changePasswordForm">
+            <div style="display:grid; grid-template-columns: 1fr; gap:12px; max-width:400px;">
+              <div class="form-row">
+                <label>Current Password</label>
+                <input type="password" id="currentPass" required />
+              </div>
+              <div class="form-row">
+                <label>New Password</label>
+                <input type="password" id="newPass" required />
+              </div>
+              <div class="form-row">
+                <label>Confirm New Password</label>
+                <input type="password" id="confirmPass" required />
+              </div>
+            </div>
+            <button type="submit" class="btn primary" style="margin-top:16px;">Change Password</button>
+          </form>
+        </div>
+
+        <div class="card">
+          <h3 style="margin-bottom:12px;">Notifications</h3>
+          <div class="form-row">
+            <label style="display:flex; align-items:center; gap:8px; cursor:pointer;">
+              <input type="checkbox" id="emailNotif" checked style="width:auto;" />
+              <span>Receive email notifications</span>
+            </label>
+          </div>
+          <div class="form-row">
+            <label style="display:flex; align-items:center; gap:8px; cursor:pointer;">
+              <input type="checkbox" id="attendanceAlerts" checked style="width:auto;" />
+              <span>Attendance alerts (when below 75%)</span>
+            </label>
+          </div>
+          <div class="form-row">
+            <label style="display:flex; align-items:center; gap:8px; cursor:pointer;">
+              <input type="checkbox" id="announcementNotif" checked style="width:auto;" />
+              <span>Announcement notifications</span>
+            </label>
+          </div>
+          <button class="btn primary" id="saveNotifications" style="margin-top:16px;">Save Preferences</button>
+        </div>
+      </section>
+
+    </main>
+  </div>
+
+  <script src="student_dashboard.js"></script>
+</body>
+</html>
